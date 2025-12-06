@@ -1,75 +1,47 @@
-@extends('layout.main')
+@extends('layouts.app')
+
+@section('title', 'Home')
 
 @section('content')
-<style>
-    body {
-        text-align: center;
-    }
-    input {
-        padding: 10px;
-        font-size: 16px;
-    }
-    button {
-        padding: 10px 20px;
-        font-size: 10px;
-        margin: 5px;
-    }
-</style>
 
-<form action="#">
-    <input type="number"
-    class="input-field" id="num1"
-    placeholder="Enter a number"
-    value="">
-    <br>
+{{-- HERO SECTION --}}
+<section class="hero">
+    <div class="hero-text">
+        <h1>Hi, I am <span>Nihal</span></h1>
+        <p class="subtitle">
+            Final year CSE student passionate about <strong>web development</strong>, 
+            <strong>machine learning</strong>, and <strong>software engineering</strong>.
+        </p>
 
-    <br>
-    <input type="number"
-    class="input-field" id="num2"
-    placeholder="Enter a number"
-    value="">
-    <br>
+        <a href="{{ url('/projects') }}" class="btn-primary">View My Projects</a>
+    </div>
 
-    <br>
-    <button type="button" onclick="add()">+</button>
-    <button type="button" onclick="sub()">-</button>
-    <button type="button" onclick="mul()">*</button>
-    <button type="button" onclick="div()">/</button>
-    <br>
+    <div class="hero-image">
+        <img src="{{ asset('images/profile.jpg') }}" alt="Profile Image">
+    </div>
+</section>
 
-    <br>
-    <input type="text" id="result" placeholder="Result" readonly>
-    <br>
+{{-- FEATURED PROJECTS --}}
+<section class="featured-projects">
+    <h2>Featured Projects</h2>
 
-</form>
+    <div class="project-grid">
+        <!-- Later replace with database loop -->
+        <div class="project-card">
+            <h3>Project One</h3>
+            <p>Short description of your project. Showcases your work.</p>
+        </div>
 
-<script>
-    function add(){
-    let num1 = document.getElementById('num1').value;
-    let num2 = document.getElementById('num2').value;
-    let result = Number(num1) + Number(num2);
-    document.getElementById('result').value = result;
-    }
+        <div class="project-card">
+            <h3>Project Two</h3>
+            <p>Short description of another featured project.</p>
+        </div>
 
-    function sub(){
-    let num1 = document.getElementById('num1').value;
-    let num2 = document.getElementById('num2').value;
-    let result = Number(num1) - Number(num2);
-    document.getElementById('result').value = result;
-    }
+        <div class="project-card">
+            <h3>Project Three</h3>
+            <p>This section will automatically load real data later.</p>
+        </div>
+    </div>
+</section>
 
-    function mul(){
-    let num1 = document.getElementById('num1').value;
-    let num2 = document.getElementById('num2').value;
-    let result = Number(num1) * Number(num2);
-    document.getElementById('result').value = result;
-    }
-
-    function div(){
-    let num1 = document.getElementById('num1').value;
-    let num2 = document.getElementById('num2').value;
-    let result = Number(num1) / Number(num2);
-    document.getElementById('result').value = result;
-    }
-</script>
 @endsection
