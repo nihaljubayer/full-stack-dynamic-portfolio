@@ -3,6 +3,8 @@
 @section('title', 'Home')
 
 @section('content')
+@php use Illuminate\Support\Str; @endphp
+
 
 {{-- HERO SECTION --}}
 <section class="hero">
@@ -26,22 +28,44 @@
     <h2>Featured Projects</h2>
 
     <div class="project-grid">
-        <!-- Later replace with database loop -->
-        <div class="project-card">
-            <h3>Project One</h3>
-            <p>Short description of your project. Showcases your work.</p>
-        </div>
+        @forelse ($featuredProjects as $project)
+            <div class="project-card">
+                
+                {{-- Image --}}
+                @if ($project->image)
+                    <img src="{{ asset($project->image) }}" class="fp-image" alt="{{ $project->title }}">
+                @endif
 
-        <div class="project-card">
-            <h3>Project Two</h3>
-            <p>Short description of another featured project.</p>
-        </div>
+                <h3>{{ $project->title }}</h3>
 
-        <div class="project-card">
-            <h3>Project Three</h3>
-            <p>This section will automatically load real data later.</p>
-        </div>
+                {{-- Short description --}}
+                <p>{{ Str::limit($project->description, 120) }}</p>
+
+                {{-- Tags --}}
+                @if ($project->tech_stack)
+                    <ul class="project-tags">
+                        @foreach (explode(',', $project->tech_stack) as $tag)
+                            <li>{{ trim($tag) }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+
+                {{-- Links --}}
+                <div class="project-links">
+                    @if ($project->github_url)
+                        <a href="{{ $project->github_url }}" target="_blank">GitHub</a>
+                    @endif
+
+                    @if ($project->demo_url)
+                        <a href="{{ $project->demo_url }}" target="_blank">Live Demo</a>
+                    @endif
+                </div>
+            </div>
+        @empty
+            <p>No featured projects yet.</p>
+        @endforelse
     </div>
 </section>
+
 
 @endsection

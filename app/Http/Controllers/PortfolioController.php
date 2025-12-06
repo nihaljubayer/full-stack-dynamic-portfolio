@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Skill;
 use App\Models\Academic;
+use App\Models\Achievement;
 
 class PortfolioController extends Controller
 {
@@ -44,6 +45,12 @@ class PortfolioController extends Controller
     $academics = Academic::orderBy('display_order')->get();
 
     return view('pages.academic', compact('academics'));
+}
+public function achievements()
+{
+    $achievements = Achievement::orderBy('display_order')->get();
+
+    return view('pages.achievements', compact('achievements'));
 }
 
 }
